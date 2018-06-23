@@ -13,9 +13,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "GOOGLE_MAPS_API_KEY", "\"${getProps("googlemaps.api.key")}\""
+        buildConfigField "String", "GOOGLE_MAPS_API_KEY", "AIzaSyBnrySnXSIxxLuk_4ctIrVNymp0eDDhQPc"
 
-        manifestPlaceholders = [googleMapsApiKey: getProps("googlemaps.api.key")]
+        manifestPlaceholders = [googleMapsApiKey: "AIzaSyBnrySnXSIxxLuk_4ctIrVNymp0eDDhQPc"]
     }
     buildTypes {
         release {
