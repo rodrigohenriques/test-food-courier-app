@@ -9,12 +9,18 @@ interface LocationAddressCache {
   fun tryGet(latLng: LatLng): Maybe<String>
 
   fun store(latLng: LatLng, address: String): Completable
+
+  fun clear(): Completable
 }
 
 // I'm aware that this cache method isn't good at all
 // But I just want to avoid to reload all addresses every time
 // I swipe to refresh my order list
 class LocationAddressDummyCache @Inject constructor() : LocationAddressCache {
+  override fun clear(): Completable {
+    return Completable.fromAction { CACHE.clear() }
+  }
+
   override fun store(latLng: LatLng, address: String): Completable {
     return Completable.fromAction {
       CACHE[latLng] = address

@@ -3,7 +3,7 @@ package com.project.di.modules
 import android.app.Application
 import android.content.Context
 import com.project.BuildConfig
-import com.project.apis.GoogleApi
+import com.project.apis.GoogleMapsApi
 import com.project.data.cache.LocationAddressCache
 import com.project.data.cache.LocationAddressDummyCache
 import com.project.data.repositories.CacheableGoogleRepository
@@ -60,13 +60,13 @@ class ApplicationModule {
   }
 
   @Provides
-  fun providesGoogleApi(client: OkHttpClient) : GoogleApi {
+  fun providesGoogleApi(client: OkHttpClient) : GoogleMapsApi {
     return Retrofit.Builder()
-        .baseUrl(GoogleApi.URL)
+        .baseUrl(GoogleMapsApi.URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
-        .create(GoogleApi::class.java)
+        .create(GoogleMapsApi::class.java)
   }
 }

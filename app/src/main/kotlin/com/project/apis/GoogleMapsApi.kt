@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GoogleApi {
+interface GoogleMapsApi {
   @GET("maps/api/geocode/json")
   fun getReverseGeocode(
       @Query("key") key: String,
