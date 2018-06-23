@@ -1,6 +1,6 @@
 package com.project.data.repositories
 
-import com.project.data.entities.Order
+import com.project.data.valueobjects.Order
 import io.reactivex.Single
 
 interface OrderRepository {

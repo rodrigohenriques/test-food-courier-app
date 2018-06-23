@@ -1,9 +1,8 @@
-package com.project.data.entities
+package com.project.data.valueobjects
 
 data class Order(
     val id: String,
     val consumerName: String,
-    val eta: String,
     val location: LatLng,
     val items: List<OrderItem>,
     val totalAmount: Int,
