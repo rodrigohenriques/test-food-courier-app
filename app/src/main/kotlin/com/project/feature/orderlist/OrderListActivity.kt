@@ -15,7 +15,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
@@ -50,9 +49,13 @@ class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
     disposables.clear()
   }
 
-  override fun pullToRefreshAction(): Observable<Unit> =
+  override fun swipeRefreshes(): Observable<Unit> =
       RxSwipeRefreshLayout.refreshes(swipeRefreshLayout)
           .map { Unit }
+
+  override fun orderDeliveredClicks(): Observable<Order> = adapter.orderDeliveredClicks()
+
+  override fun orderClicks(): Observable<Order> = adapter.itemClicks()
 
   private fun render(state: OrderListState) {
     when (state.type) {
@@ -63,12 +66,12 @@ class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
       }
       is Error -> {
         hideLoading()
-        showError(state.type.message)
+        showMessage(state.type.message)
       }
     }
   }
 
-  private fun showError(message: String) {
+  private fun showMessage(message: String) {
     Snackbar.make(swipeRefreshLayout, message, Snackbar.LENGTH_SHORT).show()
   }
 

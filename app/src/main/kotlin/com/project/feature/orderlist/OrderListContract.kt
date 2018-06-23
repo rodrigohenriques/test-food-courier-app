@@ -1,10 +1,13 @@
 package com.project.feature.orderlist
 
+import com.project.data.valueobjects.Order
 import io.reactivex.Observable
 
 object OrderListContract {
   interface View {
-    fun pullToRefreshAction(): Observable<Unit>
+    fun swipeRefreshes(): Observable<Unit>
+    fun orderDeliveredClicks(): Observable<Order>
+    fun orderClicks(): Observable<Order>
   }
 
   interface Presenter {

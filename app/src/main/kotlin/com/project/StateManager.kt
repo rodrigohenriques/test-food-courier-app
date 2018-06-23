@@ -4,22 +4,22 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import kotlin.properties.Delegates
 
-open class Store<T>(initialState: T) {
+open class StateManager<T>(initialState: T) {
   private val publisher = BehaviorSubject.create<T>()
 
   private var currentState by Delegates.observable(initialState) { _, _, newState ->
     publisher.onNext(newState)
   }
 
-  open fun update(newState: T) {
+  open fun setState(newState: T) {
     currentState = newState
   }
 
   open fun state(): T = currentState
 
-  open fun update(block: T.() -> T) {
-    currentState = state().block()
+  open fun setState(block: (T) -> T) {
+    currentState = block(currentState)
   }
 
-  fun stateChanges(): Observable<T> = publisher
+  fun updates(): Observable<T> = publisher
 }

@@ -1,7 +1,6 @@
 package com.project.feature.orderlist
 
-import android.app.Activity
-import com.project.Store
+import com.project.StateManager
 import com.project.di.scopes.ActivityScope
 import dagger.Module
 import dagger.Provides
@@ -22,8 +21,8 @@ class OrderListModule {
 
   @Provides
   @ActivityScope
-  fun provideStore(): Store<OrderListState> = Store(OrderListState())
+  fun provideStore(): StateManager<OrderListState> = StateManager(OrderListState())
 
   @Provides
-  fun provideStateChanges(store: Store<OrderListState>): Observable<OrderListState> = store.stateChanges()
+  fun provideStateChanges(stateManager: StateManager<OrderListState>): Observable<OrderListState> = stateManager.updates()
 }

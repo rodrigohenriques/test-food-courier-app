@@ -16,6 +16,7 @@ class OrderListAdapter : RecyclerView.Adapter<OrderListAdapter.Holder>() {
   private var data: List<Order> = emptyList()
 
   private val itemClicksSubject = PublishSubject.create<Order>()
+  private val markAsDeliveredClicksSubject = PublishSubject.create<Order>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
     val layoutInflater = LayoutInflater.from(parent.context)
@@ -41,10 +42,13 @@ class OrderListAdapter : RecyclerView.Adapter<OrderListAdapter.Holder>() {
 
   fun itemClicks(): Observable<Order> = itemClicksSubject
 
+  fun orderDeliveredClicks(): Observable<Order> = markAsDeliveredClicksSubject
+
   inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(order: Order) {
       itemView.textViewConsumerName.text = order.consumerName
       itemView.textViewAddress.text = order.addressText
+      itemView.buttonMarkAsDelivered.setOnClickListener { markAsDeliveredClicksSubject.onNext(order) }
       itemView.setOnClickListener { itemClicksSubject.onNext(order) }
     }
   }

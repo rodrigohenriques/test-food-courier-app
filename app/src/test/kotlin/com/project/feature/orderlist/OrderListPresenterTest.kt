@@ -1,10 +1,9 @@
 package com.project.feature.orderlist
 
-import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.project.Error
-import com.project.Store
+import com.project.StateManager
 import com.project.Success
 import com.project.createFakeOrders
 import com.project.data.repositories.OrderRepository
@@ -33,7 +32,7 @@ class OrderListPresenterTest {
   private lateinit var schedulerProvider: Provider<Scheduler>
 
   @Spy
-  private var store = Store(OrderListState())
+  private var store = StateManager(OrderListState())
 
   @InjectMocks
   private lateinit var orderListPresenter: OrderListPresenter
@@ -42,7 +41,7 @@ class OrderListPresenterTest {
 
   @Test
   fun getOrders_withSuccessfulRequest_ShouldUpdateStateWithSuccessAndData() {
-    store.update(OrderListState())
+    store.setState(OrderListState())
 
     whenever(schedulerProvider.get()).thenReturn(testScheduler)
 
@@ -66,7 +65,7 @@ class OrderListPresenterTest {
 
   @Test
   fun getOrders_withFailedRequest_ShouldUpdateStateWithErrorAndNoData() {
-    store.update(OrderListState())
+    store.setState(OrderListState())
 
     whenever(schedulerProvider.get()).thenReturn(testScheduler)
 
