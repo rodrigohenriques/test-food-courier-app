@@ -14,22 +14,7 @@ data class GeocodeResult(
     @SerializedName("partial_match") val partialMatch: Boolean,
     @SerializedName("place_id") val placeId: String,
     val types: List<String>
-) {
-  fun getStreetName() = getAddressComponentLongName("route")
-  fun getStreetNumber() = getAddressComponentLongName("street_number")
-  fun getPostalCode() = getAddressComponentLongName("postal_code")
-  fun getSublocality() = getAddressComponentLongName("sublocality", "political")
-  fun getNeighborhood() = getAddressComponentLongName("neighborhood", "political")
-  fun getCity() = getAddressComponentLongName("administrative_area_level_2", "political")
-  fun getState() = getAddressComponentLongName("administrative_area_level_1", "political")
-  fun getCountry() = getAddressComponentLongName("country", "political")
-
-  fun getAddressComponentLongName(vararg types: String): String {
-    val filtered = addressComponents.filter { it.types.containsAll(types.asList()) }
-    if (filtered.isEmpty()) return ""
-    return filtered.first().longName
-  }
-}
+)
 
 data class AddressComponent(
     @SerializedName("long_name") val longName: String,
