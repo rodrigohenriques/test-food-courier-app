@@ -6,6 +6,8 @@ buildscript {
     ext.kotlin_version = '1.2.10'
     ext.dagger_version = '2.15'
     ext.retrofit_version = '2.3.0'
+    ext.googlePlayServiceVersion = '15.0.1'
+    ext.androidKtxVersion = '0.3'
 
     repositories {
         google()

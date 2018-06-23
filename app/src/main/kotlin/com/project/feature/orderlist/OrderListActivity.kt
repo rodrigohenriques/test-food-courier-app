@@ -1,14 +1,10 @@
-package com.project.feature.main
+package com.project.feature.orderlist
 
-import android.content.Context
 import android.os.Bundle
 import com.project.R
 import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
-
-  @Inject lateinit var context: Context
+class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

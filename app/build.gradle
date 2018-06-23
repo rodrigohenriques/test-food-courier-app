@@ -12,6 +12,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "GOOGLE_MAPS_API_KEY", "\"${getProps("googlemaps.api.key")}\""
+
+        manifestPlaceholders = [googleMapsApiKey: getProps("googlemaps.api.key")]
     }
     buildTypes {
         release {
@@ -27,26 +31,46 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Basics
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$appcompat_version"
     implementation "com.android.support.constraint:constraint-layout:1.1.2"
 
+    // Google
+    implementation "com.google.android.gms:play-services-location:$googlePlayServiceVersion"
+    implementation "com.google.android.gms:play-services-maps:$googlePlayServiceVersion"
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
+    // Square Libs
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:3.9.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
 
+    // Rx
     implementation "io.reactivex.rxjava2:rxjava:2.1.12"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0'
+
+    // Android KTX
+    implementation "androidx.core:core-ktx:$androidKtxVersion"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+def getProps(String propName) {
+    def propsFile = rootProject.file('local.properties')
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        return props[propName]
+    } else {
+        return ""
+    }
 }
