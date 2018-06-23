@@ -32,7 +32,7 @@ class OrderListAdapter : RecyclerView.Adapter<OrderListAdapter.Holder>() {
   override fun getItemCount(): Int = data.size
 
   fun changeData(newData: List<Order>) {
-    val diffCallback = MusicItemDiffCallback(data, newData)
+    val diffCallback = DiffCallback(data, newData)
     val diffResult = DiffUtil.calculateDiff(diffCallback)
 
     data = newData
@@ -53,7 +53,7 @@ class OrderListAdapter : RecyclerView.Adapter<OrderListAdapter.Holder>() {
     }
   }
 
-  private inner class MusicItemDiffCallback(
+  private inner class DiffCallback(
       val oldList: List<Order>,
       val newList: List<Order>
   ) : DiffUtil.Callback() {
