@@ -2,10 +2,7 @@ package com.project.feature.orderlist
 
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.project.Error
-import com.project.StateManager
-import com.project.Success
-import com.project.createFakeOrders
+import com.project.*
 import com.project.data.repositories.OrderRepository
 import io.reactivex.Completable
 import io.reactivex.Scheduler
