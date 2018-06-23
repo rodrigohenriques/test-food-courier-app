@@ -39,7 +39,7 @@ class OrderListPresenter @Inject constructor(
     disposables.clear()
   }
 
-  private fun orderDelivered(order: Order): Completable {
+  fun orderDelivered(order: Order): Completable {
     return orderRepository.delivered(order)
         .subscribeOn(backgroundScheduler.get())
         .doOnSubscribe { stateManager.setState { it.copy(type = Loading) } }
