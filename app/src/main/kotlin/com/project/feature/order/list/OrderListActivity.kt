@@ -1,4 +1,4 @@
-package com.project.feature.orderlist
+package com.project.feature.order.list
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar

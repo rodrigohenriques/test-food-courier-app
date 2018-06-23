@@ -1,4 +1,4 @@
-package com.project.feature.orderlist
+package com.project.feature.order.list
 
 import com.project.Error
 import com.project.Loading

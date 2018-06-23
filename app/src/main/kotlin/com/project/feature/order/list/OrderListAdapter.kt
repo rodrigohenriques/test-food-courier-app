@@ -1,4 +1,4 @@
-package com.project.feature.orderlist
+package com.project.feature.order.list
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView

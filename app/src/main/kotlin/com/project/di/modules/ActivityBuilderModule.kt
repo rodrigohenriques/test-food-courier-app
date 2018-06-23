@@ -1,8 +1,8 @@
 package com.project.di.modules
 
 import com.project.di.scopes.ActivityScope
-import com.project.feature.orderlist.OrderListActivity
-import com.project.feature.orderlist.OrderListModule
+import com.project.feature.order.list.OrderListActivity
+import com.project.feature.order.list.OrderListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

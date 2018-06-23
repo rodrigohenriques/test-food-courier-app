@@ -10,7 +10,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     android:name=".CustomApplication">
-    <activity android:name=".feature.orderlist.OrderListActivity"
+    <activity android:name=".feature.order.list.OrderListActivity"
       android:label="@string/activity_title_order_list">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

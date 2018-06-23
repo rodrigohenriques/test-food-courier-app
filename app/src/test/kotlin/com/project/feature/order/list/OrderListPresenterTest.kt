@@ -1,4 +1,4 @@
-package com.project.feature.orderlist
+package com.project.feature.order.list
 
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
