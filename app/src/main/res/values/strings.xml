@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">android-bootstrap</string>
+  <string name="activity_title_order_list">Orders</string>
+  <string name="action_mark_as_delivered">Delivered</string>
 </resources>

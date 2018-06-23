@@ -1,5 +1,6 @@
 package com.project.feature.orderlist
 
+import android.app.Activity
 import com.project.Store
 import com.project.di.scopes.ActivityScope
 import dagger.Module
@@ -8,6 +9,10 @@ import io.reactivex.Observable
 
 @Module
 class OrderListModule {
+
+  @Provides
+  @ActivityScope
+  fun provideView(activity: OrderListActivity): OrderListContract.View = activity
 
   @Provides
   @ActivityScope

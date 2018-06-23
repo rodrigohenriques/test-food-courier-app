@@ -1,13 +1,15 @@
 package com.project.feature.orderlist
 
+import io.reactivex.Observable
+
 object OrderListContract {
   interface View {
-
+    fun pullToRefreshAction(): Observable<Unit>
   }
 
   interface Presenter {
-    fun attachView(view: View)
+    fun onCreate()
 
-    fun detachView()
+    fun onDestroy()
   }
 }

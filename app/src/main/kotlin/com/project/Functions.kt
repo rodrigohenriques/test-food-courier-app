@@ -13,13 +13,14 @@ fun createFakeOrder(): Order {
   return Order(
       id = UUID.randomUUID().toString(),
       consumerName = "Consumer #${randomNumber()}",
-      items = items,
-      totalAmount = totalAmount,
-      change = totalAmount / 10,
       location = LatLng(
           lat = randomDouble(),
           lng = randomDouble()
-      )
+      ),
+      items = items,
+      totalAmount = totalAmount,
+      change = totalAmount / 10,
+      addressText = "Address ${randomNumber(1000)}"
   )
 }
 

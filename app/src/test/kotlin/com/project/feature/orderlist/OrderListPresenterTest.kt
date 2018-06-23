@@ -27,16 +27,16 @@ import javax.inject.Provider
 class OrderListPresenterTest {
 
   @Mock
-  lateinit var orderRepository: OrderRepository
+  private lateinit var orderRepository: OrderRepository
 
   @Mock
-  lateinit var schedulerProvider: Provider<Scheduler>
+  private lateinit var schedulerProvider: Provider<Scheduler>
 
   @Spy
-  var store = Store(OrderListState())
+  private var store = Store(OrderListState())
 
   @InjectMocks
-  lateinit var orderListPresenter: OrderListPresenter
+  private lateinit var orderListPresenter: OrderListPresenter
 
   private val testScheduler: TestScheduler = TestScheduler()
 
