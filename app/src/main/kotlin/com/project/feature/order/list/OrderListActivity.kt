@@ -14,7 +14,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_order_list.*
 import javax.inject.Inject
 
 class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
@@ -29,7 +29,7 @@ class OrderListActivity : DaggerAppCompatActivity(), OrderListContract.View {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setContentView(R.layout.activity_order_list)
 
     presenter.onCreate()
 

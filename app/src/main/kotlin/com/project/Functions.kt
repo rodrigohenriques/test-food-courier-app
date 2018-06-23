@@ -36,8 +36,6 @@ fun fakeOrderLine(): OrderItem {
 fun randomNumber(bound: Int = 1000) = Random().nextInt(bound)
 fun randomDouble() = Random().nextDouble()
 
-fun createFakeOrderResponses(quantity: Int) = (1..quantity).map { createFakeOrderResponse() }
-
 fun createFakeOrderResponse(): OrderResponse {
   val items = (1..3).map { fakeOrderLine() }
   val totalAmount = items.sumBy { it.price * it.quantity }

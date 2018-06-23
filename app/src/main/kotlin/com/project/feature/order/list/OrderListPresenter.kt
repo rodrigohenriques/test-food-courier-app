@@ -1,13 +1,11 @@
 package com.project.feature.order.list
 
-import com.project.Error
-import com.project.Loading
-import com.project.StateManager
-import com.project.Success
+import com.project.*
 import com.project.data.repositories.OrderRepository
 import com.project.data.valueobjects.Order
 import io.reactivex.Completable
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
@@ -17,7 +15,8 @@ class OrderListPresenter @Inject constructor(
     private val orderRepository: OrderRepository,
     private val backgroundScheduler: Provider<Scheduler>,
     private val stateManager: StateManager<OrderListState>,
-    private val view: OrderListContract.View
+    private val view: OrderListContract.View,
+    private val navigator: Navigator
 ) : OrderListContract.Presenter {
   private val disposables = CompositeDisposable()
 
@@ -33,6 +32,10 @@ class OrderListPresenter @Inject constructor(
         .flatMapCompletable { orderDelivered(it) }
         .subscribe()
         .addTo(disposables)
+
+    view.orderClicks()
+        .flatMapCompletable { openDetail(it) }
+        .subscribe().addTo(disposables)
   }
 
   override fun onDestroy() {
@@ -63,6 +66,12 @@ class OrderListPresenter @Inject constructor(
         .doOnError { stateManager.setState { it.copy(type = Error("Can't load orders"), orders = emptyList()) } }
         .doOnSuccess { orders -> stateManager.setState { it.copy(type = Success, orders = orders) } }
         .toCompletable()
+        .onErrorComplete()
+  }
+
+  fun openDetail(order: Order) : Completable {
+    return Completable.fromAction { navigator.navigateToOrderDetail(order) }
+        .subscribeOn(AndroidSchedulers.mainThread())
         .onErrorComplete()
   }
 }
